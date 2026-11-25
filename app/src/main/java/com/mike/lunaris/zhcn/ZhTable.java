@@ -7,7 +7,9 @@ import java.util.Map;
 public final class ZhTable {
     private static final Map<String, String> MAP = new HashMap<>(20622);
 
-    static {
+static {
+    init2();
+    init3();       
         MAP.put("Paranoid_maintainer", "该找谁负责");
         MAP.put("abc_action_bar_home_description", "转到首页");
         MAP.put("abc_action_bar_up_description", "向上导航");
@@ -3416,6 +3418,8 @@ public final class ZhTable {
         MAP.put("essential_no_apps_found", "未找到与“%s”相关的结果");
         MAP.put("essential_notifications", "重要通知");
         MAP.put("essential_notifications_summary", "选择始终显示在通知中的应用");
+        }
+        private static void init2() {
         MAP.put("essential_remove_confirm", "将 %s 从重要通知中移除？");
         MAP.put("essential_remove_title", "移除应用");
         MAP.put("estimated_charging_time_left", "剩余充电时间");
@@ -6156,6 +6160,8 @@ public final class ZhTable {
         MAP.put("notification_listener_disable_modes_warning_summary", "如果您关闭“%1$s”的通知使用权，“模式”的使用权可能也会关闭。");
         MAP.put("notification_listener_disable_warning_cancel", "取消");
         MAP.put("notification_listener_disable_warning_confirm", "关闭");
+            }
+        private static void init3() {
         MAP.put("notification_listener_not_allowed", "不允许");
         MAP.put("notification_listener_security_warning_summary", "“%1$s”应用将能够读取所有通知（包括联系人姓名、照片和您收到的消息内容等个人信息），而且还能延后/忽略通知或触发通知中的按钮（包括接听来电）。\n\n该应用因此还能开启或关闭“勿扰”模式，并可以更改相关设置。");
         MAP.put("notification_listener_security_warning_title", "要向“%1$s”授予通知使用权吗？");
