@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mike.lunaris.zhcn">
+
+    <application
+        android:allowBackup="false"
+        android:label="Lunaris Settings 中文补全"
+        android:supportsRtl="true">
+
+        <!-- Version 1: 明确声明模块作用域 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="运行时补全 Lunaris Settings 的简体中文，覆盖缺失的 zh-rCN 条目。无需修改 APK 或系统分区。" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+    </application>
+</manifest>
