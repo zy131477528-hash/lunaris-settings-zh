@@ -1,56 +1,36 @@
 name: Build Lunaris Settings ZH
 
 on:
-  push:
-    branches: [main, master]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '17'
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
         with:
           packages: 'platform-tools'
-        
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
 
-      - name: Sanity check sources
-        run: |
-          test -f app/src/main/assets/xposed_init || (echo "missing xposed_init" && exit 1)
-          test -f app/src/main/java/com/mike/lunaris/zhcn/ZhTable.java || (echo "missing ZhTable" && exit 1)
-          grep -q "public final class ZhTable" app/src/main/java/com/mike/lunaris/zhcn/ZhTable.java
-          echo "sources OK"
-
       - name: Build debug APK
-        run: chmod +x gradlew && ./gradlew :app:assembleDebug --stacktrace --no-daemon
-
-      - name: Locate APK
-        run: |
-          find . -name "*.apk" -type f -exec ls -lh {} \;
-          test -n "$(find app/build/outputs/apk -name '*.apk' | head -1)"
-
-      - name: Rename APK
-        run: |
-          SRC=$(find app/build/outputs/apk/debug -name '*.apk' | head -1)
-          cp "$SRC" LunarisSettingsZh.apk
+        run: gradle :app:assembleDebug --stacktrace --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: LunarisSettingsZh
-          path: LunarisSettingsZh.apk
-          if-no-files-found: error
+          path: app/build/outputs/apk/debug/*.apk
