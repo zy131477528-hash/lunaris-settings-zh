@@ -35,8 +35,8 @@ jobs:
           grep -q "public final class ZhTable" app/src/main/java/com/mike/lunaris/zhcn/ZhTable.java
           echo "sources OK"
 
-      - name: Build debug APK
-        run: gradle :app:assembleDebug --stacktrace --no-daemon
+      - - name: Build debug APK
+        run: chmod +x gradlew && ./gradlew :app:assembleDebug --stacktrace --no-daemon
 
       - name: Locate APK
         run: |
